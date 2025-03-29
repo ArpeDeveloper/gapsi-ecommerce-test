@@ -20,7 +20,7 @@ Es una aplicación básica de e-commerce que cuenta con un buscador de productos
    cd gapsi-ecommerce-test
    npm install
 
-3. Agrega las variables de entorno, te puedes basar del .envExample
+3. Agrega las variables de entorno, te puedes basar del .env.example
 
 4. Ejecuta el proyecto localmente:
    ```sh
