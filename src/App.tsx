@@ -4,10 +4,14 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
-import MoreVert from '@mui/icons-material/MoreVert'
+import RestartAlt from '@mui/icons-material/RestartAlt'
 import ECommerceContainer from './containers/ECommerceContainer'
 
 function App() {
+
+  const handleOnclick = () => {
+    window.location.reload()
+  }
 
   return (
     < >
@@ -23,8 +27,9 @@ function App() {
               aria-label="display more actions"
               edge="end"
               color="inherit"
+              onClick={handleOnclick}
             >
-            <MoreVert />
+            <RestartAlt />
           </IconButton>
           </Toolbar>
         </AppBar>
