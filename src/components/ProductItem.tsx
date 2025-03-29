@@ -13,8 +13,13 @@ function ProductItem({product}: { product: Product }) {
         minimumFractionDigits: 2,
       }).format(product.price ?? 0);
 
+      const handleDragStart = (e: React.DragEvent, product: Product) => {
+        e.dataTransfer.setData('productId', product.id);
+      };
+
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card draggable
+        onDragStart={(e) => handleDragStart(e, product)} sx={{ maxWidth: 345 }}>
             <CardActionArea>
                 <CardMedia
                     component="img"

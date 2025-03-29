@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ShoppingCarItem, Product } from "../models/Product";
+import { ShoppingCarItem } from "../models/Product";
 
 const initialState: ShoppingCarItem[] = []
 
@@ -8,12 +8,12 @@ const shoppingCarSlice = createSlice({
   initialState: initialState,
   reducers: {
     addItem: (state, action) => {
-      const product: Product = action.payload;
-      const existingItem = state.find(item => item.id === product.id);
+      const productId = action.payload;
+      const existingItem = state.find(item => item.id === productId);
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.push({ ...product, quantity: 1 });
+        state.push({ id: productId, quantity: 1 });
       }
     },
     removeItem: (state, action) => {

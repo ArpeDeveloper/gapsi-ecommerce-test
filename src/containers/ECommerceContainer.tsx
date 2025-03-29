@@ -7,8 +7,11 @@ import { getProducts } from "../services/getProducts";
 import { Product } from "../models/Product";
 import ProductItem from "../components/ProductItem";
 import SkeletonProducts from "../components/SkeletonProducts";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 function ECommerceContainer() {
+  const shoppingCarStore = useSelector((state: RootState) => state.shoppingCar)
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -26,6 +29,11 @@ function ECommerceContainer() {
     handleSearch()
   }, [debouncedQuery]);
 
+  useEffect(() => {
+    const filteredProducts = products.filter((item: Product) => shoppingCarStore.find(sc => sc.id ==item.id ) === undefined)
+        setProducts(filteredProducts)
+  }, [shoppingCarStore]);
+
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
   }
@@ -35,7 +43,8 @@ function ECommerceContainer() {
       setIsLoading(true)
       const response = await getProducts(debouncedQuery, 1);
       if(response.ok){
-        setProducts(response.data)
+        const filteredProducts = response.data.filter((item: Product) => shoppingCarStore.find(sc => sc.id ==item.id ) === undefined)
+        setProducts(filteredProducts)
       }
       setIsLoading(false)
     }

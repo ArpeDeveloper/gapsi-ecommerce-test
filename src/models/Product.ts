@@ -8,7 +8,5 @@ export interface Product {
 
 export interface ShoppingCarItem {
     id: string,
-    name: string,
-    price: number,
     quantity: number
 }

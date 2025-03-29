@@ -6,3 +6,6 @@ export const store = configureStore({
     shoppingCar: shoppingCarReducer,
   },
 });
+
+export type AppStore = typeof store
+export type RootState = ReturnType<AppStore['getState']>

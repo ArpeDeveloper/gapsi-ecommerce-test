@@ -5,14 +5,28 @@ import CardActions from "@mui/material/CardActions"
 import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
 import Typography from "@mui/material/Typography"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store/store" // Adjust the path to your store file
+import { addItem } from "../store/shoppingCarSlice"
 
 function ShoppingCar() {
-    const shoppingCarStore = useSelector((state: RootState) => state.shoppingCar);
+    const shoppingCarStore = useSelector((state: RootState) => state.shoppingCar)
+    const dispatch = useDispatch()
+
+    const handleDrop = (e: React.DragEvent) => {
+        const productId = e.dataTransfer.getData('productId')
+    
+        if (productId) {
+            dispatch(addItem(productId))
+        }
+    }
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault()  
+      }
 
   return (
-    <Card variant="outlined" sx={{maxWidth:345}} >
+    <Card onDrop={handleDrop} onDragOver={handleDragOver} variant="outlined" sx={{maxWidth:345}} >
         
         <CardMedia
             component="img"
