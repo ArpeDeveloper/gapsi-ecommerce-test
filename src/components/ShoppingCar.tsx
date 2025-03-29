@@ -5,8 +5,11 @@ import CardActions from "@mui/material/CardActions"
 import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
 import Typography from "@mui/material/Typography"
+import { useSelector } from "react-redux"
+import { RootState } from "../store/store" // Adjust the path to your store file
 
 function ShoppingCar() {
+    const shoppingCarStore = useSelector((state: RootState) => state.shoppingCar);
 
   return (
     <Card variant="outlined" sx={{maxWidth:345}} >
@@ -23,7 +26,7 @@ function ShoppingCar() {
               }}
             alt="Carrito de compras"
         />
-        <Badge badgeContent={4} color="primary">
+        <Badge badgeContent={shoppingCarStore.length} color="primary">
             <CardContent>
                 <MoveUp  style={{ fontSize: 40, float:'left' }} color="primary" />
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>

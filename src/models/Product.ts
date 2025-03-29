@@ -5,3 +5,10 @@ export interface Product {
     image: string,
     description: string
 }
+
+export interface ShoppingCarItem {
+    id: string,
+    name: string,
+    price: number,
+    quantity: number
+}
