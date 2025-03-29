@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { ShoppingCarItem } from "../models/Product";
+import { createSlice } from "@reduxjs/toolkit"
+import { ShoppingCarItem } from "../models/Product"
 
 const initialState: ShoppingCarItem[] = []
 
@@ -8,26 +8,30 @@ const shoppingCarSlice = createSlice({
   initialState: initialState,
   reducers: {
     addItem: (state, action) => {
-      const productId = action.payload;
-      const existingItem = state.find(item => item.id === productId);
+      const productId = action.payload
+      const existingItem = state.find(item => item.id === productId)
       if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += 1
       } else {
-        state.push({ id: productId, quantity: 1 });
+        state.push({ id: productId, quantity: 1 })
       }
     },
     removeItem: (state, action) => {
-      const product = action.payload;
-      const existingItem = state.find(item => item.id === product.id);
+      const productId = action.payload
+      const existingItem = state.find(item => item.id === productId)
       if (existingItem) {
-        existingItem.quantity -= 1;
+        existingItem.quantity -= 1
         if (existingItem.quantity <= 0) {
-          return state.filter(item => item.id !== product.id);
+          return state.filter(item => item.id !== productId)
         }
       }
     },
-  },
-});
+    clearCar: () => {
+      return initialState
+    }
 
-export const { addItem, removeItem } = shoppingCarSlice.actions;
-export default shoppingCarSlice.reducer;
+  },
+})
+
+export const { addItem, removeItem, clearCar } = shoppingCarSlice.actions
+export default shoppingCarSlice.reducer

@@ -3,7 +3,7 @@ import CardActionArea from "@mui/material/CardActionArea"
 import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
 import Typography from "@mui/material/Typography"
-import { Product } from "../models/Product";
+import { Product } from "../models/Product"
 
 
 function ProductItem({product}: { product: Product }) {
@@ -11,11 +11,11 @@ function ProductItem({product}: { product: Product }) {
         style: "currency",
         currency: "MXN",
         minimumFractionDigits: 2,
-      }).format(product.price ?? 0);
+      }).format(product.price ?? 0)
 
       const handleDragStart = (e: React.DragEvent, product: Product) => {
-        e.dataTransfer.setData('productId', product.id);
-      };
+        e.dataTransfer.setData('productId', product.id)
+      }
 
     return (
         <Card draggable
