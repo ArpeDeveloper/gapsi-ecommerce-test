@@ -32,7 +32,7 @@ function ECommerceContainer() {
       if (query === "") {
         setProducts([])
       } else setDebouncedQuery(query)
-    }, 500) 
+    }, 600) 
 
     return () => clearTimeout(timeout)
   }, [query])
@@ -51,7 +51,7 @@ function ECommerceContainer() {
   }
 
   const handleSearch = async () => {
-    if (debouncedQuery) {
+    if (debouncedQuery && debouncedQuery !== "") {
       setIsLoading(true)
       const response = await getProducts(debouncedQuery, page)
       if(response.ok){
@@ -60,6 +60,10 @@ function ECommerceContainer() {
         setHasMore(filteredProducts.length > 0)
       }
       setIsLoading(false)
+    } else {
+      setProducts([])
+      setHasMore(true)
+
     }
   }
 
@@ -68,9 +72,13 @@ function ECommerceContainer() {
   }
 
   const reloadApp = () => {
-    dispatch(clearCar())
-    setProducts([])
     setQuery("")
+    setPage(1)
+    setHasMore(true)
+    setDebouncedQuery("")
+    setIsLoading(false)
+    setProducts([])
+    dispatch(clearCar())
   }
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -113,10 +121,10 @@ function ECommerceContainer() {
         {isLoading && page == 1 ? 
           <SkeletonProducts quantity={6} />
           : (
-            <Box onScroll={handleScroll} sx={{ maxHeight: "80vh", overflowY: "auto" }}>
+            <Box onScroll={handleScroll} sx={{ maxHeight: "50vh", overflowY: "auto" }}>
               <Grid container spacing={2} sx={{marginTop: 2}}>
-                {products.map((product: any) => (
-                  <Grid size={{xs: 12, sm:6, md:6}} key={product.id}>
+                {products.map((product: Product, index:number) => (
+                  <Grid size={{xs: 12, sm:6, md:6}} key={product.id + index}>
                     <ProductItem product={product} />
                   </Grid>
                 ))}

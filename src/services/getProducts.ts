@@ -13,7 +13,7 @@ export const getProducts = async (keyword: string, page: number):Promise<{ ok: b
         const productsResponse = data.item?.props?.pageProps?.initialData?.searchResult?.itemStacks?.[0]?.items
         const products = productsResponse.filter((item: any) => item.id).map((item: any) => {
             return {
-                id: item.id,
+                id: item.id + Date.now(),
                 name: item.name,
                 price: item.price,
                 image: item.image,
