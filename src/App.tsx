@@ -33,16 +33,16 @@ function App() {
           </Toolbar>
         </AppBar>
       </Box>
-      <Container>
-      <Grid container spacing={2}>
-        <Grid size={{xs: 12, md:6}}>
-          <SearchInput />
+      <Container sx={{paddingTop: 2}}>
+        <Grid container spacing={2}>
+          <Grid size={{xs: 12, md:6}}>
+            <SearchInput />
+          </Grid>
+          <Grid size={{xs: 12, md:6}}>
+            <ShoppingCar />
+          </Grid>
         </Grid>
-        <Grid size={{xs: 12, md:6}}>
-          <ShoppingCar />
-        </Grid>
-      </Grid>
-      <ListProductsContainer />
+        <ListProductsContainer />
       </Container>
     </>
   )
