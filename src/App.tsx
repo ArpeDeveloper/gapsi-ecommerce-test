@@ -1,33 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Container from '@mui/material/Container'
+import Box from '@mui/material/Box'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import MoreVert from '@mui/icons-material/MoreVert'
+import Grid from '@mui/material/Grid'
+import SearchInput from './components/SearchInput'
+import ShoppingCar from './components/ShoppingCar'
+import ListProductsContainer from './containers/ListProductsContainer'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    < >
+      <Box >
+        <AppBar position="static">
+          <Toolbar>
+            <img src='/img/logo.png' className="logo" alt="Gapsi logo" />
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              e-Commerce Gapsi
+            </Typography>
+            <IconButton
+              size="large"
+              aria-label="display more actions"
+              edge="end"
+              color="inherit"
+            >
+            <MoreVert />
+          </IconButton>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <Container>
+      <Grid container spacing={2}>
+        <Grid size={{xs: 12, md:6}}>
+          <SearchInput />
+        </Grid>
+        <Grid size={{xs: 12, md:6}}>
+          <ShoppingCar />
+        </Grid>
+      </Grid>
+      <ListProductsContainer />
+      </Container>
     </>
   )
 }
