@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography"
 function ShoppingCar() {
 
   return (
-    <Card variant="outlined" >
+    <Card variant="outlined" sx={{maxWidth:345}} >
         
         <CardMedia
             component="img"

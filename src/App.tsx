@@ -1,15 +1,11 @@
 import './App.css'
-import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import MoreVert from '@mui/icons-material/MoreVert'
-import Grid from '@mui/material/Grid'
-import SearchInput from './components/SearchInput'
-import ShoppingCar from './components/ShoppingCar'
-import ListProductsContainer from './containers/ListProductsContainer'
+import ECommerceContainer from './containers/ECommerceContainer'
 
 function App() {
 
@@ -33,17 +29,7 @@ function App() {
           </Toolbar>
         </AppBar>
       </Box>
-      <Container sx={{paddingTop: 2}}>
-        <Grid container spacing={2}>
-          <Grid size={{xs: 12, md:6}}>
-            <SearchInput />
-          </Grid>
-          <Grid size={{xs: 12, md:6}}>
-            <ShoppingCar />
-          </Grid>
-        </Grid>
-        <ListProductsContainer />
-      </Container>
+      <ECommerceContainer />
     </>
   )
 }
